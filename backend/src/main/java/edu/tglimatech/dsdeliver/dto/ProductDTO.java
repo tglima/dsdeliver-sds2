@@ -1,29 +1,23 @@
-package edu.tglimatech.dsdeliver.entities;
+package edu.tglimatech.dsdeliver.dto;
 
-import javax.persistence.*;
+import edu.tglimatech.dsdeliver.entities.Product;
+
 import java.io.Serializable;
-import java.util.Objects;
 
-@Entity
-@Table(name = "tb_product")
-public class Product implements Serializable
+public class ProductDTO implements Serializable
 {
-
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private Double price;
     private String description;
     private String imageUri;
 
-    public Product(){}
+    public ProductDTO(){}
 
-    public Product(Long id, String name, Double price, String description, String imageUri)
+    public ProductDTO(Long id, String name, Double price, String description, String imageUri)
     {
-        super();
         this.id = id;
         this.name = name;
         this.price = price;
@@ -81,18 +75,13 @@ public class Product implements Serializable
         this.imageUri = imageUri;
     }
 
-    @Override
-    public boolean equals(Object o)
+    public ProductDTO(Product entity)
     {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return id.equals(product.id);
+        this.id = entity.getId();
+        this.name = entity.getName();
+        this.price = entity.getPrice();
+        this.description = entity.getDescription();
+        this.imageUri = entity.getImageUri();
     }
 
-    @Override
-    public int hashCode()
-    {
-        return Objects.hash(id);
-    }
 }
