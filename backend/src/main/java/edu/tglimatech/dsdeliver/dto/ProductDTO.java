@@ -25,6 +25,15 @@ public class ProductDTO implements Serializable
         this.imageUri = imageUri;
     }
 
+    public ProductDTO(Product entity)
+    {
+        this.id = entity.getId();
+        this.name = entity.getName();
+        this.price = entity.getPrice();
+        this.description = entity.getDescription();
+        this.imageUri = entity.getImageUri();
+    }
+
     public Long getId()
     {
         return id;
@@ -75,13 +84,6 @@ public class ProductDTO implements Serializable
         this.imageUri = imageUri;
     }
 
-    public ProductDTO(Product entity)
-    {
-        this.id = entity.getId();
-        this.name = entity.getName();
-        this.price = entity.getPrice();
-        this.description = entity.getDescription();
-        this.imageUri = entity.getImageUri();
-    }
+
 
 }
