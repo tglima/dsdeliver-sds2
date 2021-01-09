@@ -6,7 +6,7 @@ import StepHeader from './StepsHeader'
 import { OrderLocationData, Product } from './types';
 import OrderSummary from './OrderSummary';
 import Footer from '../Footer';
-import { checkIsSelected } from './helpers';
+import { checkIsSelected, validateOrder } from './helpers';
 import { toast } from 'react-toastify';
 import './style.css'
 
@@ -43,6 +43,13 @@ function Orders()
 
       const handleSubmit = () => {
         const productsIds = selectedProducts.map(({ id }) => ({ id }));
+
+
+        if(!validateOrder(selectedProducts, orderLocation!))
+        {
+          return;
+        }
+
         const payload = {
           ...orderLocation!,
           products: productsIds
