@@ -1,8 +1,15 @@
+import { checkIsSelected } from "./helpers";
 import ProductCard from "./ProductCard";
 import { Product } from "./types";
-type Props = { products: Product[]; }
 
-function ProductList({products }: Props)
+type Props = 
+{ 
+    products: Product[]; 
+    selectedProducts: Product[]; 
+    onSelectProduct: (product: Product) => void;
+}
+
+function ProductList({products, onSelectProduct, selectedProducts }: Props)
 {
     return (
         <div className="orders-list-container">
@@ -10,7 +17,12 @@ function ProductList({products }: Props)
                 {
                     products.map(
                         product => (
-                            <ProductCard key={product.id} product={product} />
+                            <ProductCard 
+                                key={product.id} 
+                                product={product}
+                                onSelectProduct={onSelectProduct}
+                                isSelected={checkIsSelected(selectedProducts, product)}    
+                            />
                         )
                     )
                 }
